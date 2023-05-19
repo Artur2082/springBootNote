@@ -1,4 +1,4 @@
-package com.hillel.springboot.web;
+package com.hillel.springboot.web.mapper;
 
 import com.hillel.springboot.dto.NoteDto;
 import com.hillel.springboot.persistance.entity.Note;
