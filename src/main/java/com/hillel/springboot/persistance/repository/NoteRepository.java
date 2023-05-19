@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface NoteRepository extends ListCrudRepository<Note, Integer> {
-List<Note> findByNameOrContentContaining(String name, String message);
+    List<Note> findByNameOrContentContaining(String name, String message);
 
-List<Note> findByCreatedAtBetweenOrderByCreatedAt(Date start, Date end);
+    List<Note> findByCreatedAtBetweenOrderByCreatedAt(Date start, Date end);
 }

@@ -19,9 +19,11 @@ public class NoteService {
     public Note create(Note note) {
         return this.noteRepository.save(note);
     }
+
     public Optional<Note> findById(Integer id) {
         return this.noteRepository.findById(id);
     }
+
     public List<Note> findAll() {
         return this.noteRepository.findAll();
     }
@@ -30,15 +32,17 @@ public class NoteService {
         this.noteRepository.deleteById(id);
     }
 
-    public void update(Note note, Note newNote){
+    public void update(Note note, Note newNote) {
         note.setName(newNote.getName());
         note.setContent(newNote.getContent());
         note.setCreatedAt(newNote.getCreatedAt());
         noteRepository.save(note);
     }
-public List<Note> searchByDate(Date start, Date end){
+
+    public List<Note> searchByDate(Date start, Date end) {
         return noteRepository.findByCreatedAtBetweenOrderByCreatedAt(start, end);
-}
+    }
+
     public List<Note> search(String name, String message) {
         return this.noteRepository.findByNameOrContentContaining(name, message);
     }

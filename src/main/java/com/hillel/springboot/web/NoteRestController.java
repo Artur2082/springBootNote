@@ -18,24 +18,28 @@ import java.util.List;
 public class NoteRestController {
     private final NoteMapper noteMapper;
     private final NoteService noteService;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-public Note insert (@RequestBody NoteDto dto){
+    public Note insert(@RequestBody NoteDto dto) {
         Note note = noteMapper.map(dto);
         return noteService.create(note);
-}
+    }
+
     @GetMapping("/{id}")
     public NoteDto getById(@PathVariable Integer id) {
         Note note = noteService.findById(id).orElseThrow();
         return noteMapper.map(note);
     }
+
     @GetMapping("/delete/{id}")
     public void delete(@PathVariable("id") Integer id) {
         noteService.deleteById(id);
     }
+
     @GetMapping("/all")
-    public List<Note> findALL (){
-       return noteService.findAll();
+    public List<Note> findALL() {
+        return noteService.findAll();
     }
 
     @PutMapping("/{id}")
