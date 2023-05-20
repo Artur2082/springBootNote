@@ -44,6 +44,6 @@ public class NoteService {
     }
 
     public List<Note> search(String name, String message) {
-        return this.noteRepository.findByNameOrContentContaining(name, message);
+        return this.noteRepository.findByNameContainingOrContentContaining(name, message);
     }
 }

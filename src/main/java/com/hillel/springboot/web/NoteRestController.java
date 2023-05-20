@@ -49,14 +49,14 @@ public class NoteRestController {
     }
 
     @GetMapping("/searchDates")
-    public List<NoteDto> searchByDates(@RequestParam(value = "start", required = false) Date start,
-                                       @RequestParam(value = "end", required = false) Date end) {
+    public List<NoteDto> searchByDates(@RequestParam(value = "start") Date start,
+                                       @RequestParam(value = "end") Date end) {
         return noteService.searchByDate(start, end).stream().map(noteMapper::map).toList();
     }
 
     @GetMapping("/search")
-    public List<NoteDto> search(@RequestParam(value = "name", required = false) String name,
-                                @RequestParam(value = "message", required = false) String message) {
+    public List<NoteDto> search(@RequestParam(value = "name") String name,
+                                @RequestParam(value = "message") String message) {
         return noteService.search(name, message).stream().map(this.noteMapper::map).toList();
     }
 }
