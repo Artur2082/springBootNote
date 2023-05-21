@@ -3,6 +3,7 @@ package com.hillel.springboot.web.mapper;
 import com.hillel.springboot.dto.NoteDto;
 import com.hillel.springboot.persistance.entity.Note;
 import org.springframework.stereotype.Component;
+import java.sql.Date;
 
 @Component
 public class NoteMapper {
@@ -20,5 +21,8 @@ public class NoteMapper {
                 .content(note.getContent())
                 .createdAt(note.getCreatedAt())
                 .build();
+    }
+    public Date mapDate(Long date){
+        return new Date(date);
     }
 }

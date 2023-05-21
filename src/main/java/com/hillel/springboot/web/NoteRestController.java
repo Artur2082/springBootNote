@@ -7,7 +7,6 @@ import com.hillel.springboot.web.mapper.NoteMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Date;
 import java.util.List;
 
@@ -49,9 +48,10 @@ public class NoteRestController {
     }
 
     @GetMapping("/searchDates")
-    public List<NoteDto> searchByDates(@RequestParam(value = "start") Date start,
-                                       @RequestParam(value = "end") Date end) {
-        return noteService.searchByDate(start, end).stream().map(noteMapper::map).toList();
+    public List<NoteDto> searchByDates(@RequestParam(value = "start") Long start,
+                                       @RequestParam(value = "end") Long end) {
+        return noteService.searchByDate(start, end)
+                .stream().map(noteMapper::map).toList();
     }
 
     @GetMapping("/search")

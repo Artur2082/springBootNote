@@ -2,6 +2,7 @@ package com.hillel.springboot.root;
 
 import com.hillel.springboot.persistance.entity.Note;
 import com.hillel.springboot.persistance.repository.NoteRepository;
+import com.hillel.springboot.web.mapper.NoteMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class NoteService {
     private NoteRepository noteRepository;
+    private NoteMapper noteMapper;
 
     public Note create(Note note) {
         return this.noteRepository.save(note);
@@ -39,8 +41,10 @@ public class NoteService {
         noteRepository.save(note);
     }
 
-    public List<Note> searchByDate(Date start, Date end) {
-        return noteRepository.findByCreatedAtBetweenOrderByCreatedAt(start, end);
+    public List<Note> searchByDate(Long start, Long end) {
+        Date st = noteMapper.mapDate(start);
+        Date en = noteMapper.mapDate(end);
+        return noteRepository.findByCreatedAtBetweenOrderByCreatedAt(st, en);
     }
 
     public List<Note> search(String name, String message) {
