@@ -16,7 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class NoteService {
     private NoteRepository noteRepository;
-    private NoteMapper noteMapper;
+
 
     public Note create(Note note) {
         return this.noteRepository.save(note);
@@ -41,10 +41,8 @@ public class NoteService {
         noteRepository.save(note);
     }
 
-    public List<Note> searchByDate(Long start, Long end) {
-        Date st = noteMapper.mapDate(start);
-        Date en = noteMapper.mapDate(end);
-        return noteRepository.findByCreatedAtBetweenOrderByCreatedAt(st, en);
+    public List<Note> searchByDate(Date start, Date end) {
+        return noteRepository.findByCreatedAtBetweenOrderByCreatedAt(start, end);
     }
 
     public List<Note> search(String name, String message) {

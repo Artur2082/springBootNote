@@ -50,7 +50,9 @@ public class NoteRestController {
     @GetMapping("/searchDates")
     public List<NoteDto> searchByDates(@RequestParam(value = "start") Long start,
                                        @RequestParam(value = "end") Long end) {
-        return noteService.searchByDate(start, end)
+        Date st = noteMapper.mapDate(start);
+        Date en = noteMapper.mapDate(end);
+        return noteService.searchByDate(st, en)
                 .stream().map(noteMapper::map).toList();
     }
 
